@@ -15,7 +15,7 @@ from questions import get_random_dare
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger(__name__)
 
-TRUTH, EVALUATION, VOTES = range(1, 4)
+TRUTH, EVALUATION = range(1, 3)
 votes_arr = []
 
 keyboard = ReplyKeyboardMarkup([['Правда', 'Действие']])
@@ -59,8 +59,8 @@ def evaluate(update: Update, context: CallbackContext) -> int:
         update.message.reply_text(text=f'@{update.effective_user.username} твой ответ записан')
     else:
         update.message.reply_text('Напиши для 👍 или 👎 оценивания ответа')
-    if update.message.get_members_count() == len(votes_arr):
-        return VOTES
+    # if update.message.get_members_count() == len(votes_arr):
+    #     # return VOTES
 
 
 # def votes(update: Update, context: CallbackContext):
@@ -99,9 +99,9 @@ def main():
             EVALUATION: [
                 MessageHandler(Filters.text, evaluate, pass_user_data=True)
             ],
-            VOTES: [
-                # MessageHandler(Filters.text, votes)
-            ]
+            # VOTES: [
+            #     # MessageHandler(Filters.text, votes)
+            # ]
         },
         fallbacks=[]
     )
