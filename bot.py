@@ -52,10 +52,10 @@ def evaluate(update: Update, context: CallbackContext) -> int:
     if update.effective_user.id == context.user_data['id']:
         pass
     if update.message.text == '👍':
-        votes_arr.append({'id': update.effective_user.id, 'vote': True}) if {'id': update.effective_user.id, 'vote': True} not in votes_arr else None
+        # votes_arr.append({'id': update.effective_user.id, 'vote': True}) if {'id': update.effective_user.id, 'vote': True} not in votes_arr else None
         update.message.reply_text(text=f'@{update.effective_user.username} твой ответ записан')
     elif update.message.text == '👎':
-        votes_arr.append({'id': update.effective_user.id, 'vote': False})
+        # votes_arr.append({'id': update.effective_user.id, 'vote': False})
         update.message.reply_text(text=f'@{update.effective_user.username} твой ответ записан')
     else:
         update.message.reply_text('Напиши для 👍 или 👎 оценивания ответа')
@@ -63,14 +63,14 @@ def evaluate(update: Update, context: CallbackContext) -> int:
         return VOTES
 
 
-def votes(update: Update, context: CallbackContext):
-    a = filter(lambda x: x['vote'], votes_arr)
-    b = filter(lambda x: not x['vote'], votes_arr)
-    print(a, b)
-    if len(list(a)) > len(list(b)):
-        update.message.reply_text('Задание выполнено')
-    else:
-        update.message.reply_text('Задание не выполнено')
+# def votes(update: Update, context: CallbackContext):
+#     a = filter(lambda x: x['vote'], votes_arr)
+#     b = filter(lambda x: not x['vote'], votes_arr)
+#     print(a, b)
+#     if len(list(a)) > len(list(b)):
+#         update.message.reply_text('Задание выполнено')
+#     else:
+#         update.message.reply_text('Задание не выполнено')
 
 
 def main():
@@ -100,7 +100,7 @@ def main():
                 MessageHandler(Filters.text, evaluate, pass_user_data=True)
             ],
             VOTES: [
-                MessageHandler(Filters.text, votes)
+                # MessageHandler(Filters.text, votes)
             ]
         },
         fallbacks=[]
