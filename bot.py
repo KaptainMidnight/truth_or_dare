@@ -45,10 +45,10 @@ def get_random_truth_handler(update: Update, context: CallbackContext) -> int:
         update.message.reply_text(get_random_truth(), reply_markup=keyboard)
     elif update.message.text.lower() == 'действие':
         update.message.reply_text(get_random_dare(), reply_markup=keyboard)
-    return EVALUATION
+    # return EVALUATION
 
 
-def evaluate(update: Update, context: CallbackContext) -> int:
+def evaluate(update: Update, context: CallbackContext):
     if update.effective_user.id == context.user_data['id']:
         pass
     if update.message.text == '👍':
